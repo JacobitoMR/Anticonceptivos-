@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anticonceptivos y Su Trayecto en la Historia</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --light-text: #666;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        nav {
+            background: var(--secondary-color);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
+
+        .intro {
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 2rem;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 1000px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .quiz {
+            padding: 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-options button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .quiz-options button:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .quiz-result {
+            margin-top: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            min-height: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            
+            .section {
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anticonceptivos y Su Trayecto en la Historia</h1>
+    </header>
+    <nav>
+        <a href="#intro">Inicio</a>
+        <a href="#history">Historia</a>
+        <a href="#gallery">Galería</a>
+        <a href="#game">Juego</a>
+    </nav>
+    <div class="intro" id="intro">
+        <h2>Bienvenidos</h2>
+        <p>Explora la fascinante historia de los anticonceptivos a través de los siglos y su impacto en la sociedad moderna.</p>
+    </div>
+    <div class="section" id="history">
+        <h2>Historia de los Anticonceptivos</h2>
+        <p>La historia de los métodos anticonceptivos es tan antigua como la civilización misma. Desde la antigüedad, las diferentes culturas han buscado formas de controlar la natalidad y planificar sus familias.</p>
+        <p>A lo largo de los siglos, hemos visto una evolución significativa en las técnicas y métodos utilizados, desde remedios naturales hasta los modernos anticonceptivos hormonales.</p>
+    </div>
+    <div class="section" id="gallery">
+        <h2>Galería de Imágenes</h2>
+        <div class="gallery">
+            <img src="/api/placeholder/400/320" alt="Historia de los anticonceptivos 1">
+            <img src="/api/placeholder/400/320" alt="Historia de los anticonceptivos 2">
+            <img src="/api/placeholder/400/320" alt="Métodos modernos">
+        </div>
+    </div>
+    <div class="section quiz" id="game">
+        <h2>Juego Interactivo</h2>
+        <p>Pon a prueba tus conocimientos sobre la historia de los anticonceptivos con este quiz educativo.</p>
+        <div class="quiz-question" id="quiz-question"></div>
+        <ul class="quiz-options" id="quiz-options"></ul>
+        <div class="quiz-result" id="quiz-result"></div>
+    </div>
+    <script>
+        const quizData = [
+            {
+                question: "¿Cuál es el método anticonceptivo más antiguo conocido?",
+                options: ["Condón", "Píldora anticonceptiva", "Ducha vaginal", "Método del ritmo"],
+                answer: "Condón"
+            },
+            {
+                question: "¿En qué siglo se desarrolló la primera píldora anticonceptiva?",
+                options: ["Siglo XIX", "Siglo XX", "Siglo XVIII", "Siglo XXI"],
+                answer: "Siglo XX"
+            },
+            {
+                question: "¿Qué material se utilizaba en los primeros condones?",
+                options: ["Látex", "Intestinos de animales", "Plástico", "Tela"],
+                answer: "Intestinos de animales"
+            }
+        ];
+
+        let currentQuestion = 0;
+        const quizQuestionElement = document.getElementById('quiz-question');
+        const quizOptionsElement = document.getElementById('quiz-options');
+        const quizResultElement = document.getElementById('quiz-result');
+
+        function loadQuiz() {
+            const currentQuizData = quizData[currentQuestion];
+            quizQuestionElement.innerText = currentQuizData.question;
+            quizOptionsElement.innerHTML = '';
+            currentQuizData.options.forEach(option => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => checkAnswer(option);
+                li.appendChild(button);
+                quizOptionsElement.appendChild(li);
+            });
+        }
+
+        function checkAnswer(selectedOption) {
+            const currentQuizData = quizData[currentQuestion];
+            if (selectedOption === currentQuizData.answer) {
+                quizResultElement.innerText = '¡Correcto!';
+            } else {
+                quizResultElement.innerText = 'Incorrecto. La respuesta correcta es: ' + currentQuizData.answer;
+            }
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                setTimeout(() => {
+                    quizResultElement.innerText = '';
+                    loadQuiz();
+                }, 2000);
+            } else {
+                setTimeout(() => {
+                    quizResultElement.innerText = '¡Has completado el quiz!';
+                    currentQuestion = 0;
+                    setTimeout(() => {
+                        loadQuiz();
+                    }, 2000);
+                }, 2000);
+            }
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
